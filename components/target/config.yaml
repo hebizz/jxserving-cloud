@@ -1,0 +1,9 @@
+target:
+  server:
+    RunMode: debug
+    HttpPort: :9003
+database:
+  mongo:
+    host: ""
+    database: ""
+    tablename: ""

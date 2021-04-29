@@ -1,0 +1,8 @@
+analyst:
+  server:
+    RunMode: debug
+    HttpPort: :9006
+database:
+  mongo:
+    host: ""
+    database: ""

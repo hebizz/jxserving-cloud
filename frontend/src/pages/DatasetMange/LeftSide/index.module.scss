@@ -1,0 +1,36 @@
+.leftSide{
+    grid-area: left;
+    width:200px;
+    display: flex;
+    flex-direction: column;
+    .tool{
+        display: flex;
+        align-items: center;
+        width:300px;
+    }
+    .content{
+        flex: 1 1;
+        height: 100%;
+        :global{
+            .ant-spin-nested-loading{
+                height: 100%;
+            }
+            .ant-spin-container{
+                height: 100%;
+            }
+        }
+        .list{
+            flex:1;
+            height: 100%;
+            overflow: auto;
+            .item{
+                width:100%;
+                box-sizing: border-box;
+            }
+            .selected{
+                border:3px solid purple;
+                opacity: 0.6;
+            }
+        }
+    }
+}

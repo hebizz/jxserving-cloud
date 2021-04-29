@@ -1,0 +1,12 @@
+database:
+  mongo:
+    Type:
+    Host:
+    DataBase:
+    TableName:
+model:
+  server:
+    RunMode: debug
+    HttpPort: :9004
+  app:
+    ModelSavePath: ""

@@ -1,0 +1,7 @@
+#model
+p, superadmin, /*, *
+
+p, admin, /*, *
+
+p, user, /*, *
+

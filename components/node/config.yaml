@@ -1,0 +1,8 @@
+node:
+  server:
+    RunMode: debug
+    HttpPort: :9001
+database:
+  mongo:
+    Host:
+    DataBase:

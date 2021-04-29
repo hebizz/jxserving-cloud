@@ -1,0 +1,37 @@
+// dataset.proto
+syntax = "proto3";
+import "common.proto";
+
+package trueno;
+
+service Dataset {
+  rpc ListDataset (PingRequest) returns (ListReply) {}
+  rpc PushDataset (PushRequest) returns (ResultReply) {}
+  rpc PullDataset (PullRequest) returns (ResultReply) {}
+  rpc DeleteDataset (DeleteRequest) returns (ResultReply) {}
+}
+
+message ListReply {
+
+  message Dataset {
+    string dataset = 1;
+  }
+
+  repeated Dataset list = 1;
+}
+
+message PushRequest {
+  uint64 id = 1;
+  bytes buffer = 2;
+  string name = 3;
+}
+
+message PullRequest {
+  uint64 size = 1;
+  string md5sum = 2;
+  string dataset = 3;
+}
+
+message DeleteRequest {
+  string dataset = 1;
+}

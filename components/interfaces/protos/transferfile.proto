@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package trueno;
+
+service TransferFile {
+    rpc Upload (Request) returns (Reply) {
+    }
+}
+
+message Request {
+    bytes buffer = 1;
+    string name = 2;
+}
+
+message Reply {
+    int32 status = 1;
+}

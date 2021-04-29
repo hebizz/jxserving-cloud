@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datasets-dep
+spec:
+  selector:
+    matchLabels:
+      app: datasets
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: datasets
+    spec:
+      containers:
+        - name: datasets
+          image: registry.jiangxingai.com:5000/jxserving-datasets-linux-amd64:0.1.0
+          ports:
+            - containerPort: 9002
+          imagePullPolicy: Always
+          livenessProbe:
+            tcpSocket:
+              port: 9002
+      tolerations:
+        - key: "node.kubernetes.io/unreachable"
+          operator: "Exists"
+          effect: "NoExecute"
+          tolerationSeconds: 10
+        - key: "node.kubernetes.io/not-ready"
+          operator: "Exists"
+          effect: "NoExecute"
+          tolerationSeconds: 10
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: datasets-svc
+spec:
+  selector:
+    app: datasets
+  ports:
+    - protocol: TCP
+      port: 9002
+

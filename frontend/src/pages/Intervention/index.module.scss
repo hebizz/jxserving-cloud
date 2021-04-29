@@ -1,0 +1,62 @@
+.spinWrapper{
+    height: 100%;
+    :global{
+        .ant-spin-container{
+            height: 100%;
+        }
+    }
+}
+.wrapper{
+    height: 100%;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 400px 1fr;
+    grid-gap: 20px 20px;
+    grid-template-areas: 'left main'
+                         'left reference';
+
+
+    .reference{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width:100%;
+        overflow: auto;
+        >:nth-child(n){
+            // height: 100%;
+            min-height: 400px;
+            flex:1;
+            min-width: 50%;
+            border:1px solid;
+        }
+    }
+}
+
+.addIcon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;   
+}
+
+.referenceModel{
+    padding:10px;
+    >i:nth-of-type(n){
+        visibility: hidden;
+        float: right;
+        opacity: 0.8;
+        cursor: pointer;
+    }
+    &:hover > i {
+        visibility: visible;
+    }
+    >:last-child{
+        // width: 100%;
+        height:calc(100% - 22px);
+        // img{
+        //     max-width: 100%;
+        //     max-height: 100%
+        // }
+    }
+}

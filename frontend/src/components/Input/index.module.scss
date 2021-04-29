@@ -1,0 +1,22 @@
+.wrapper{
+    :global{
+        .ant-input {
+            width: 200px;
+            margin: 0 8px 8px 0;
+          }
+    }
+}
+.desc{
+    font-weight: bold;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    &::after{
+        content: "";
+        height: 100%;
+        border-right: 1px solid rgba(0,0,0,0.09);
+        position: absolute;
+        right: 0;
+        top: 1px;
+    }
+}

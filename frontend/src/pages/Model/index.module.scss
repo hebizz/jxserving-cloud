@@ -1,0 +1,34 @@
+.tool{
+    margin-top: 16px;
+    margin-right: 26px;
+    text-align: right
+}
+.radio{
+    display: 'block';
+    height: '30px';
+    lineHeight: '30px';
+}
+.adjustModal{
+    margin-top: 20px;
+    .adjustButtonGroup{
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+        >:nth-child(n){
+            margin:0 16px;
+        }
+    }
+    .adjustSelect{
+        min-width: 100px;
+    }
+}
+.historyModal{
+    width: auto !important;
+    max-width: 1200px;
+    :global{
+        // .ant-table-body{
+        //     height: 300px !important;
+        //     overflow: auto;
+        // }
+    }
+}

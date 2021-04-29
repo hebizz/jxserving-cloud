@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: assistant-dep
+spec:
+  selector:
+    matchLabels:
+      app: assistant
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: assistant
+    spec:
+      containers:
+        - name: assistant
+          image: registry.jiangxingai.com:5000/jxserving-assistant-linux-amd64:0.1.0
+          ports:
+            - containerPort: 10000
+          imagePullPolicy: Always
+          env:
+            - name: PORTS
+              value: "29996,30000"
+            - name: HOSTS
+              value: "10.100.1.2,192.168.0.32"
+            - name: APIS
+              value: "/api/v1/manual/result,/api/v1/aido"
+            - name: PROJECTS
+              value: "GanSu,NanJing"
+            - name: REPORT_URL
+              value: https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=330936a8-bc0b-4d4a-96da-1335ab31fc26
+          volumeMounts:
+            - name: assistant-logs
+              mountPath: /logs
+      volumes:
+        - name: assistant-logs
+          hostPath:
+            path: /logs/assistant
+      tolerations:
+        - key: "node.kubernetes.io/unreachable"
+          operator: "Exists"
+          effect: "NoExecute"
+          tolerationSeconds: 10
+        - key: "node.kubernetes.io/not-ready"
+          operator: "Exists"
+          effect: "NoExecute"
+          tolerationSeconds: 10
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: assistant-svc
+spec:
+  selector:
+    app: assistant
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 10000
+      targetPort: 10000
+      nodePort: 10000

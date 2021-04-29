@@ -1,0 +1,72 @@
+// .container{
+//     display: inline-block;
+//     background:rgba(255,255,255,1);
+//     box-shadow:0px 0px 10px 0px rgba(0,0,0,0.04);
+//     border-radius:4px;
+//     height: 32px;
+//     overflow: hidden;
+//     vertical-align: middle;
+
+    .desc{
+        font-weight: bold;
+        padding-left: 16px;
+        padding-right: 16px;
+        position: relative;
+        &::after{
+            content: "";
+            height: 100%;
+            border-right: 1px solid rgba(0,0,0,0.09);
+            position: absolute;
+            right: 0;
+            top: 1px;
+        }
+    }
+//     :global{
+//         .ant-select .ant-select-enabled{
+//             background-color: transparent;
+//         }
+//         .ant-select-selection{
+//             font-size: 12px;
+//             color: rgba(0,0,0,0.5);
+//             border-width: 0;
+//             border-color: transparent;
+//             &:hover{
+//                 border-width: 0 !important;
+//             }
+//             &:focus{
+//                 border-width: 0 !important;
+//                 outline: none !important;
+//                 box-shadow: none !important;
+//             }
+//             &:visited{
+//                 border-width: 0 !important;
+//                 outline: none !important;
+//             }
+//         }
+//         .ant-select-selection__rendered{
+//             padding: 1px 0;
+//             .ant-select-selection-selected-value{
+//                 padding-right: 33px !important;
+//                 padding-left: 3px !important;
+//                 // width: 93px;
+//             }
+//         }
+//         .ant-select-arrow{
+//             right: 16px;
+//         }
+//     }
+//     .dropDownItem{
+//         font-size: 12px;
+//     }
+// }
+// :global{
+//     .ant-select-dropdown-menu-item{
+//         // width: 100%;
+//         padding-left: 5px;
+//         padding-right: 5px;
+//     }
+//     .ant-select-dropdown-menu-item-selected{
+//         border-left: 2px solid #4586F9;
+
+//       }
+// }

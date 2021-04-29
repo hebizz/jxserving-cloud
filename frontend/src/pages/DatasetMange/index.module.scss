@@ -1,0 +1,17 @@
+.wrapper{
+    height: 100%;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-areas: 'goback goback'
+                         'left main';
+    grid-template-rows: 32px calc(100% - 32px);
+    grid-gap: 20px 30px;
+    .goBack{
+        grid-area: goback;
+        width:60px;
+    }
+
+    >:last-child{
+        grid-area: main
+    }
+}

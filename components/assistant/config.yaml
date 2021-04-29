@@ -1,0 +1,17 @@
+assistant:
+  server:
+    runMode: debug
+    httpPort: :10000
+  report-backend:
+    host: ""
+    port: ""
+  jxserving-backend:
+    host: ""
+    port: ""
+  dataset-backend:
+    host: ""
+    port: ""
+database:
+  mongo:
+    host:
+    database:

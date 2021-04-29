@@ -1,0 +1,11 @@
+gateway:
+  server:
+    RunMode: debug
+    HttpPort: :9000
+  route:
+    dataset:
+      host:
+      port:
+    assistant:
+      host:
+      port:

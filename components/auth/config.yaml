@@ -1,0 +1,11 @@
+server:
+  RunMode: debug
+  HttpPort: :8001
+  ReadTimeout: 60
+  WriteTimeout: 60
+database:
+  mongo: 
+    Type: mongo
+    Host: mongodb://10.53.2.217:27017
+    DataBase: jxserving
+    TableName: auth

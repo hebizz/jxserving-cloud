@@ -1,0 +1,22 @@
+.chooseData{
+    margin:24px 0px;
+    .chooseDataSelect{
+        min-width: 100px;
+    }
+}
+.tool{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 24px;
+    button{
+        margin:24px;
+    }
+}
+.label{
+    margin-left: 16px;
+}
+// .wrapper{
+//     .ant-calendar-picker{
+//         width:400px !important
+//     }
+// }

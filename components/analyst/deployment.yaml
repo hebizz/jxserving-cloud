@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jxserving-analyst-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jxserving-analyst
+  template:
+    metadata:
+      labels:
+        app: jxserving-analyst-pod
+    spec:
+      containers:
+        - name: analyst
+          image: jxserving-analyst-linux-amd64:0.1.0
+          ports:
+            - containerPort: 9000
+              hostPort: 9000
+          imagePullPolicy: Always
+          livenessProbe:
+            tcpSocket:
+              port: 9000
+      tolerations:
+        - key: "node.kubernetes.io/unreachable"
+          operator: "Exists"
+          effect: "NoExecute"
+          tolerationSeconds: 10
+        - key: "node.kubernetes.io/not-ready"
+          operator: "Exists"
+          effect: "NoExecute"
+          tolerationSeconds: 10
+      restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jxserving-analyst-service
+  labels:
+    app: jxserving-analyst-svc
+spec:
+  selector:
+    app: jxserving-analyst
+  type: NodePort
+  ports:
+    - name: mosquitto-server
+      port: 9000
+      targetPort: 9000

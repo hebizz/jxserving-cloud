@@ -1,0 +1,14 @@
+dataset:
+  server:
+    RunMode: debug
+    HttpPort: :9002
+  storage:
+    ImageSourceSavePath:
+    VocDataXmlSavePath:
+    VocDataUploadZipPath:
+    VocDataUploadUnZipPath:
+    CocoDataUploadPath:
+database:
+  mongo:
+    host:
+    database:

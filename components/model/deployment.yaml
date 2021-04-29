@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jxserving-model-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jxserving-model
+  template:
+    metadata:
+      labels:
+        app: jxserving-model-pod
+    spec:
+      containers:
+        - name: model
+          image: http://registry.jiangxingai.com:5000/repo/tags/jxserving-model-linux-amd64
+          ports:
+            - containerPort: 9004
+              hostPort: 9004
+          imagePullPolicy: Always
+          livenessProbe:
+            tcpSocket:
+              port: 9004
+      tolerations:
+        - key: "node.kubernetes.io/unreachable"
+          operator: "Exists"
+          effect: "NoExecute"
+          tolerationSeconds: 10
+        - key: "node.kubernetes.io/not-ready"
+          operator: "Exists"
+          effect: "NoExecute"
+          tolerationSeconds: 10
+      restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jxserving-model-service
+  labels:
+    app: jxserving-model-svc
+spec:
+  selector:
+    app: jxserving-model
+  type: NodePort
+  ports:
+    - name: model
+      port: 9004
+      targetPort: 9004

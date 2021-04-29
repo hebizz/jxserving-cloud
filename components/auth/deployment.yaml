@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jxserving-auth-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jxserving-auth
+  template:
+    metadata:
+      labels:
+        app: jxserving-auth-pod
+    spec:
+      containers:
+        - name: auth
+          image: jxserving-auth-linux-amd64:0.1.0
+          ports:
+            - containerPort: 8001
+              hostPort: 8001
+          imagePullPolicy: Always
+          livenessProbe:
+            tcpSocket:
+              port: 8001
+      tolerations:
+        - key: "node.kubernetes.io/unreachable"
+          operator: "Exists"
+          effect: "NoExecute"
+          tolerationSeconds: 10
+        - key: "node.kubernetes.io/not-ready"
+          operator: "Exists"
+          effect: "NoExecute"
+          tolerationSeconds: 10
+      restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jxserving-auth-service
+  labels:
+    app: jxserving-auth-svc
+spec:
+  selector:
+    app: jxserving-auth
+    type: NodePort
+  ports:
+    - name: auth
+      port: 8001
+      targetPort: 8001

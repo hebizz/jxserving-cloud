@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: target-dep
+spec:
+  selector:
+    matchLabels:
+      app: labels
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: target
+    spec:
+      containers:
+        - name: target
+          image: registry.jiangxingai.com:5000/jxserving-target-linux-amd64:0.1.0
+          ports:
+            - containerPort: 9003
+          imagePullPolicy: Always
+          livenessProbe:
+            tcpSocket:
+              port: 9002
+      tolerations:
+        - key: "node.kubernetes.io/unreachable"
+          operator: "Exists"
+          effect: "NoExecute"
+          tolerationSeconds: 10
+        - key: "node.kubernetes.io/not-ready"
+          operator: "Exists"
+          effect: "NoExecute"
+          tolerationSeconds: 10
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: target-svc
+spec:
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 9003
+      targetPort: 9003
+      nodePort: 9003
+  selector:
+    app: target
+
